@@ -1,71 +1,74 @@
+// In the name of Allah the most beneficent the most merciful - sūrat l-naml(27:30)
 #include <bits/stdc++.h>
 using namespace std;
-
-void merge(int array[], int left, int mid, int right)
+#define int long long int
+#define endl '\n'
+#define nn 1000000007
+#define pb push_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define YES cout << "YES\n"
+#define NO cout << "NO\n"
+#define f0(n) for (int i = 0; i < n; i++)
+#define f1(n) for (int i = 1; i < n; i++)
+#define all(_a) _a.begin(), _a.end()
+#define fast()                            \
+    {                                     \
+        ios_base::sync_with_stdio(false); \
+        cin.tie(NULL);                    \
+    }
+int bx[7];
+void merge(int ax[], int l, int mid, int h)
 {
-    int subArrayOne = mid - left + 1;
-    int subArrayTwo = right - mid;
-
-    auto *leftArray = new int[subArrayOne],
-         *rightArray = new int[subArrayTwo];
-
-    for (auto i = 0; i < subArrayOne; i++)
-        leftArray[i] = array[left + i];
-    for (auto j = 0; j < subArrayTwo; j++)
-        rightArray[j] = array[mid + 1 + j];
-
-    auto indexOfSubArrayOne = 0, indexOfSubArrayTwo = 0;
-    int indexOfMergedArray = left;
-
-    while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo)
+    int i = l;
+    int j = mid + 1;
+    int k = l;
+    while (i <= mid and j <= h)
     {
-        if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo])
+        if (ax[i] >= ax[j])
         {
-            array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
-            indexOfSubArrayOne++;
+            bx[k] = ax[j];
+            k++;
+            j++;
         }
         else
         {
-            array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
-            indexOfSubArrayTwo++;
+            bx[k] = ax[i];
+            k++;
+            i++;
         }
-        indexOfMergedArray++;
     }
-
-    while (indexOfSubArrayOne < subArrayOne)
+    while (i <= mid)
     {
-        array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
-        indexOfSubArrayOne++;
-        indexOfMergedArray++;
+        bx[k] = ax[i];
+        k++;
+        i++;
     }
-
-    while (indexOfSubArrayTwo < subArrayTwo)
+    while (j <= h)
     {
-        array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
-        indexOfSubArrayTwo++;
-        indexOfMergedArray++;
+        bx[k] = ax[j];
+        j++;
+        k++;
     }
+    for (int i = l; i <= h; i++)
+        ax[i] = bx[i];
 }
-
-void mergeSort(int array[], int begin, int end)
+void mergesort(int ax[], int l, int h)
 {
-    if (begin >= end)
+    if (l >= h)
         return;
-    int mid = begin + (end - begin) / 2;
-    mergeSort(array, begin, mid);
-    mergeSort(array, mid + 1, end);
-    merge(array, begin, mid, end);
+    else
+    {
+        int mid = (l + h) / 2;
+        mergesort(ax, l, mid);
+        mergesort(ax, mid + 1, h);
+        merge(ax, l, mid, h);
+    }
 }
-
-void printArray(int A[], int size)
+int32_t main()
 {
-    for (int i = 0; i < size; i++)
-        cout << A[i] << " ";
-    cout << endl;
-}
-
-int main()
-{
+    fast();
     // // generate input
     // ofstream write("search.txt");
     // int n = 50000;
@@ -78,15 +81,15 @@ int main()
     ifstream in("search.txt");
     int i;
     int count = 0;
-    int size = 1000;
-    int a[size];
+    int size = 10;
+    int ax[size];
     while (in >> i and count < size)
     {
-        a[count] = i;
+        ax[count] = i;
         count++;
     }
     int a_size = size;
-    mergeSort(a, 0, a_size - 1);
-
-    printArray(a, a_size);
+    mergesort(ax, 0, a_size - 1);
+    for (auto i : bx)
+        cout << i << " ";
 }
