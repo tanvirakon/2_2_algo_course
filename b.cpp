@@ -1,37 +1,31 @@
-// Q: write a single file handling program in c++ to reading and writing data on a file.
-
-#include<iostream>
-#include<fstream>
-
+// In the name of Allah the most beneficent the most merciful - sūrat l-naml(27:30)
+#include <bits/stdc++.h>
 using namespace std;
-main()
+#define int long long int
+#define endl '\n'
+#define nn 1000000007
+#define pb push_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define YES cout << "YES\n"
+#define NO cout << "NO\n"
+#define f0(n) for (int i = 0; i < n; i++)
+#define f1(n) for (int i = 1; i < n; i++)
+#define fast()                        \
+	{                                     \
+		ios_base::sync_with_stdio(false); \
+		cin.tie(NULL);                    \
+	}
+int32_t main()
 {
-	// int rno,fee;
-	// char name[50];
-
-	// cout<<"Enter the Roll Number:";
-	// cin>>rno;
-	
-	// cout<<"\nEnter the Name:";
-	// cin>>name;
-	
-	// cout<<"\nEnter the Fee:";
-	// cin>>fee;
-
-	// ofstream fout("akon.txt");
-
-	// fout<<rno<<"\t"<<name<<"\t"<<fee; //write data to the file student
-
-	// fout.close();
-
-	// ifstream fin("akon.txt");
-
-	// fin>>rno>>name>>fee; //read data from the file student
-
-	// fin.close();
-
-	// cout<<endl<<rno<<"\t"<<name<<"\t"<<fee;
-
-	// return 0;
-    cout<<5;
+	fast();
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		int sum=0,flag=0;
+		      
+		      
+	}
 }

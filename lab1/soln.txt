@@ -1,6 +1,6 @@
-key: 86
-size: 1851
+key: 88
+size: 20000
 linear search: yes
-steps taken for linear search: 288
+steps taken for linear search: 222
 binary search: yes
 steps taken for binary search: 8
