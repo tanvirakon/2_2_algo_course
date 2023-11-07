@@ -88,7 +88,7 @@ int32_t main()
     clock_t start = clock();
     bubble(a, size);
     clock_t end = clock();
-    cout << (float)(end - start) / CLOCKS_PER_SEC << endl;
+    cout << (float)(end - start) / CLOCKS_PER_SEC <<'\n';
     selection(a, size);
     end = clock()-end;
     cout << (float)(end - start) / CLOCKS_PER_SEC << endl;
