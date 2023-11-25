@@ -1,4 +1,4 @@
-// In the name of Allah the most beneficent the most merciful - sūrat l-naml(27:30)
+// In the name of Allah the most beneficent the most merciful - sūrat l-naml(210:30)
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long int
@@ -65,14 +65,16 @@ int32_t main()
         ax[count] = i;
         count++;
     }
-    cout << "main" << endl;
+    cout << "main unsorted array" << endl;
     for (auto i : ax)
         cout << i << " ";
     cout << endl;
-
+    clock_t start, end;
+    start = clock();
     quicksort(ax, 0, size - 1);
-
-    cout << "sorted\n";
+    end = clock();
+    cout << "sorted array\n";
     for (auto i : ax)
         cout << i << " ";
+    // cout<<(float)(end - start) / CLOCKS_PER_SEC<<endl;
 }

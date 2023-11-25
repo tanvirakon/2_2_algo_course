@@ -2,72 +2,108 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long int
-#define endl '\n'
-#define nn 1000000007
-#define pb push_back
-#define mp make_pair
-#define ff first
-#define ss second
-#define YES cout << "YES\n"
-#define NO cout << "NO\n"
 #define f0(n) for (int i = 0; i < n; i++)
-#define f1(n) for (int i = 1; i < n; i++)
-#define all(_a) _a.begin(), _a.end()
 #define fast()                            \
     {                                     \
         ios_base::sync_with_stdio(false); \
         cin.tie(NULL);                    \
     }
-int a[15];
-void maxmin(int i, int j, int &max, int &min)
+int maxx, minn;
+int max_min_normal(int arr[], int size)
 {
+    maxx = minn = arr[0];
+    int comp = 0;
+
+    for (int i = 1; i < size; i++)
+    {
+        if (arr[i] > maxx)
+        {
+            maxx = arr[i];
+            comp++;
+        }
+        else if (arr[i] < minn)
+        {
+            minn = arr[i];
+            comp++;
+        }
+    }
+    return comp;
+}
+
+int MaxMin(int i, int j, int arr[], int &max, int &min)
+{
+    int comp = 0;
     if (i == j)
     {
-        max = a[i];
-        min = a[i];
-        return;
+        max = min = arr[i];
+        comp++;
     }
     else if (i == j - 1)
     {
-        if (a[i] < a[j])
+        if (arr[i] < arr[j])
         {
-            max = a[j];
-            min = a[i];
+            max = arr[j];
+            min = arr[i];
+            comp++;
         }
         else
         {
-            min = a[j];
-            max = a[i];
+            max = arr[i];
+            min = arr[j];
+            comp++;
         }
-        return;
     }
     else
     {
-        int max1, min1, mid;
-        mid = (i + j) / 2;
-        maxmin(i, mid, max, min);
-        maxmin(mid + 1, j, max1, min1);
-        if (max < max1)
+        int mid = (i + j) / 2;
+        int max1, min1;
+        int comp1 = MaxMin(i, mid, arr, max, min);
+        int comp2 = MaxMin(mid + 1, j, arr, max1, min1);
+
+        comp += (comp1 + comp2);
+
+        if (max1 > max)
+        {
             max = max1;
-        if (min > min1)
+            comp++;
+        }
+        if (min1 < min)
+        {
             min = min1;
+            comp++;
+        }
     }
+    return comp;
 }
+
 int32_t main()
 {
-    fast();
-    int sum = 0, flag = 0;
+    int n = 9000;
+    int arr[n + 1];
+    // int rand_n;
+    // // generate input
+    // ofstream write("search.txt");
+    // f0(n)
+    // {
+    //     int k = rand() % 500 + 1;
+    //     write << k << endl;
+    // }
     ifstream in("search.txt");
-    int i;
-    int count = 0;
-    int size = 15;
-    while (in >> i and count < size)
+    for (int i = 0; i < n; i++)
     {
-        a[count] = i;
-        count++;
+        in >> arr[i];
     }
-    int a_size = size;
-    int max, min;
-    maxmin(0, a_size - 1, max, min);
-    cout << max << " " << min;
+    in.close();
+    clock_t start, end;
+    start = clock();
+    int comp1 = max_min_normal(arr, n);
+    end = clock();
+    cout << "Normal Method:\n";
+    cout << "Max: " << maxx << ", Min: " << minn << endl;
+    int max2 = arr[0];
+    int min2 = arr[0];
+    int comp2 = MaxMin(0, n - 1, arr, max2, min2);
+    cout << "Comparisons: " << comp1 << endl;
+    cout << "Divide and Conquer Method:\n";
+    cout << "Max: " << max2 << ", Min: " << min2 << ", Comparisons: " << comp2 << endl;
 }

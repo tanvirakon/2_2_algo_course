@@ -2,23 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long int
-#define endl '\n'
-#define nn 1000000007
-#define pb push_back
-#define mp make_pair
-#define ff first
-#define ss second
-#define YES cout << "YES\n"
-#define NO cout << "NO\n"
-#define f0(n) for (int i = 0; i < n; i++)
-#define f1(n) for (int i = 1; i < n; i++)
-#define all(_a) _a.begin(), _a.end()
-#define fast()                            \
-    {                                     \
-        ios_base::sync_with_stdio(false); \
-        cin.tie(NULL);                    \
-    }
-int bx[7];
+int bx[20000];
 void merge(int ax[], int l, int mid, int h)
 {
     int i = l;
@@ -68,10 +52,9 @@ void mergesort(int ax[], int l, int h)
 }
 int32_t main()
 {
-    fast();
     // // generate input
     // ofstream write("search.txt");
-    // int n = 50000;
+    // int n = 200000;
     // f0(n)
     // {
     //     int k = rand() % 500 + 1;
@@ -81,7 +64,7 @@ int32_t main()
     ifstream in("search.txt");
     int i;
     int count = 0;
-    int size = 10;
+    int size = 20000;
     int ax[size];
     while (in >> i and count < size)
     {
@@ -89,7 +72,11 @@ int32_t main()
         count++;
     }
     int a_size = size;
+    clock_t start = clock();
     mergesort(ax, 0, a_size - 1);
-    for (auto i : bx)
-        cout << i << " ";
+    // for (auto i : ax)
+    //     cout << i << " ";
+    // cout << endl;
+    clock_t end = clock();
+    cout << "time taken :" << (float)(end - start) / CLOCKS_PER_SEC << endl;
 }

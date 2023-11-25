@@ -41,11 +41,10 @@ bool cmp(pair<int, int> a, pair<int, int> b)
 }
 int32_t main()
 {
-    fast();
+    // fast();
     int sum = 0, flag = 0;
     int n;
     cin >> n;
-    vector<pair<int, int>> vp;
     f0(n)
     {
         int a, b;
@@ -69,15 +68,15 @@ int32_t main()
         // cout << i << " " << tp.ff << " " << tp.ss << endl;
         while (st.size() and (det(st.top(), tp, vp[i]) < 0))
         {
-            cout << "i = " << i << " " << tp.ff << " " << st.top().ff << " " << vp[i].ff << " " << det(st.top(), tp, vp[i]) << endl;
+            // cout << "i = " << i << " " << tp.ff << " " << st.top().ff << " " << vp[i].ff << " " << det(st.top(), tp, vp[i]) << endl;
             tp = st.top();
             st.pop();
         }
         st.push(tp);
         st.push(vp[i]);
     }
-    cout << "convex hall contains\n";
-    // cout << st.size() << endl;
+    // cout << "convex hall contains\n";
+    cout << st.size() << endl;
     while (!st.empty())
     {
         cout << st.top().ff << " " << st.top().ss << endl;

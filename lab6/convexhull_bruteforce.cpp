@@ -12,7 +12,7 @@ using namespace std;
 #define NO cout << "NO\n"
 #define f0(n) for (int i = 0; i < n; i++)
 #define f1(n) for (int i = 1; i < n; i++)
-#define all(_a) _a.begin(), _a.end()
+#define all(_a) _a.begin() + 1, _a.end()
 #define fast()                            \
     {                                     \
         ios_base::sync_with_stdio(false); \
@@ -43,20 +43,33 @@ int32_t main()
 {
     fast();
     int sum = 0, flag = 0;
-    int n;
-    cin >> n;
-    vector<pair<int, int>> vp;
-    f0(n)
+    int i;
+    int a, b;
+    ifstream file("convex_file.txt");
+    // in >> i;
+    // int n = i;
+    // cout << "number of points : " << n << endl;
+
+    while (!file.eof())
     {
-        int a, b;
-        cin >> a >> b;
+        // int a, b;
+        file >> a >> b;
+        // cout << a << " " << b << endl;
         vp.pb({a, b});
-        if (i)
-        {
-            if (vp[i].ff < vp[0].ff) // jar x choto -> left most point detemined by less x
-                swap(vp[i], vp[0]);
-        }
+        // if (i)
+        // {
+        //     if (vp[i].ff < vp[0].ff) // jar x choto -> left most point detemined by less x
+        //         swap(vp[i], vp[0]);
+        // }
+        sum++;
     }
+    int n = sum;
+    f1(n)
+    {
+        if (vp[i].ff < vp[0].ff) // jar x choto -> left most point detemined by less x
+                swap(vp[i], vp[0]);
+    }
+    // cout << n << endl;
     sort(vp.begin() + 1, vp.end(), cmp);
     // for (int i = 0; i < n; i++)
     //     cout << "i = " << i << " " << vp[i].ff << " " << vp[i].ss << endl;
@@ -69,7 +82,7 @@ int32_t main()
         // cout << i << " " << tp.ff << " " << tp.ss << endl;
         while (st.size() and (det(st.top(), tp, vp[i]) < 0))
         {
-            cout << "i = " << i << " " << tp.ff << " " << st.top().ff << " " << vp[i].ff << " " << det(st.top(), tp, vp[i]) << endl;
+            // cout << "i = " << i << " " << tp.ff << " " << st.top().ff << " " << vp[i].ff << " " << det(st.top(), tp, vp[i]) << endl;
             tp = st.top();
             st.pop();
         }
@@ -77,10 +90,10 @@ int32_t main()
         st.push(vp[i]);
     }
     cout << "convex hall contains\n";
-    // cout << st.size() << endl;
     while (!st.empty())
     {
         cout << st.top().ff << " " << st.top().ss << endl;
         st.pop();
     }
+    set<int>set;
 }
