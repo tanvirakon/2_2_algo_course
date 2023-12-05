@@ -15,18 +15,18 @@ int partition(int ax[], int l, int h)
     int pivot = ax[h];
     int x = l;
     int y = h;
+    cout << "step no " << step << ", l " << l << ", h " << h << ", pivot " << pivot << endl;
 
-    for (int j = l; j < h; j++)
+    for (int i = l; i < h; i++)
     {
-        if (ax[j] < pivot)
+        if (ax[i] < pivot)
         {
-            swap(ax[l], ax[j]);
+            swap(ax[l], ax[i]);
             l++;
         }
     }
     swap(ax[h], ax[l]);
 
-    cout << "step no " << step << " pivot " << pivot << endl;
     for (int i = 0; i < 10; i++)
         cout << ax[i] << " ";
     cout << endl;

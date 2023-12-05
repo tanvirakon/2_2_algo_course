@@ -23,12 +23,13 @@ int32_t main()
     fast();
     srand(time(0));
     int sum = 0, flag = 0;
-    int n = 1000;
-    ofstream write("convex_file.txt");
+    int n = 10;
+    ofstream write("input.txt");
     for (int i = 0; i < n; i++)
     {
-        int a = rand() % 20;
-        int b = rand() % 20 + 1;
-        write << a << " " << b << endl;
+        int a = rand() % 10 + 1;
+        int b = rand() % 10 + 1;
+        int c = rand() % 10;
+        write << a << " " << b << " " << c << endl;
     }
 }
