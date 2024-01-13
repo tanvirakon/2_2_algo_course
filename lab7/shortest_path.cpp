@@ -3,7 +3,7 @@
 using namespace std;
 #define int long long int
 #define endl '\n'
-#define nn 107
+#define nn 17
 #define pb push_back
 #define mp make_pair
 #define ff first
@@ -52,7 +52,6 @@ void dijkstra(int src)
 int32_t main()
 {
     fast();
-    int sum = 0, flag = 0;
     ifstream file("input.txt");
     int a, b, w;
     int c = 0;
@@ -74,12 +73,8 @@ int32_t main()
         }
     }
     int n = 7;
-    // cout << g.size();
-    // // int n = sum;
     dijkstra(0);
     cout << "shortest distence from source:\n";
     for (int i = 0; i < n; i++)
         cout << "node " << i << ": " << dist[i] << endl;
-    // for (int i = 1; i <= n; i++)
-    //     cout << path[i] << " ";
 }

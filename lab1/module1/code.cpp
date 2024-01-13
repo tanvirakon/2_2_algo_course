@@ -3,6 +3,7 @@ using namespace std;
 #define int long long int
 #define pb push_back
 #define f0(n) for (int i = 0; i < n; i++)
+
 void bubble(vector<int> a, int n)
 {
     int i, j;
@@ -29,17 +30,21 @@ void bubble(vector<int> a, int n)
 
 void selection(vector<int> a, int n)
 {
-    f0(n - 1)
+    int i, j, min_idx;
+
+    for (i = 0; i < n - 1; i++)
     {
-        for (int j = i + 1; j < n; j++)
+
+        // minimum element in unsorted array
+        min_idx = i;
+        for (j = i + 1; j < n; j++)
         {
-            if (a[i] < a[j])
-                continue;
-            else
-            {
-                swap(a[i], a[j]);
-            }
+            if (a[j] < a[min_idx])
+                min_idx = j;
         }
+
+        if (min_idx != i)
+            swap(a[min_idx], a[i]);
     }
     for (auto i : a)
         cout << i << " ";
@@ -85,14 +90,14 @@ int32_t main()
         count++;
     }
     in.close();
-    clock_t start = clock();
-    bubble(a, size);
-    clock_t end = clock();
-    cout << (float)(end - start) / CLOCKS_PER_SEC <<'\n';
+    // clock_t start = clock();
+    // bubble(a, size);
+    // clock_t end = clock();
+    // cout << (float)(end - start) / CLOCKS_PER_SEC << '\n';
     selection(a, size);
-    end = clock()-end;
-    cout << (float)(end - start) / CLOCKS_PER_SEC << endl;
-    insertion(a, size);
-    end = clock()-end;
-    cout << (float)(end - start) / CLOCKS_PER_SEC << endl;
+    // end = clock() - end;
+    // cout << (float)(end - start) / CLOCKS_PER_SEC << endl;
+    // insertion(a, size);
+    // end = clock() - end;
+    // cout << (float)(end - start) / CLOCKS_PER_SEC << endl;
 }

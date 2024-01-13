@@ -95,5 +95,4 @@ int32_t main()
         cout << st.top().ff << " " << st.top().ss << endl;
         st.pop();
     }
-    set<int>set;
 }
